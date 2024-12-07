@@ -6,10 +6,13 @@ use Illuminate\Support\Facades\Route;
 
 # se agregó homecontroller
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CartController;
 
 route::get('/',[HomeController::class, 'home' ]);
 
 route::get('/dashboard',[HomeController::class, 'login_home' ])->middleware(['auth', 'verified'])->name('dashboard');
+
+route::get('/myorders',[HomeController::class, 'myorders' ])->middleware(['auth', 'verified']);
 
 
 Route::middleware('auth')->group(function () {
@@ -49,3 +52,19 @@ route::get('product_search', [AdminController::class, 'product_search']) -> midd
 route::get('product_details/{id}', [HomeController::class, 'product_details']); 
 
 route::get('add_cart/{id}', [HomeController::class, 'add_cart']) -> middleware(['auth','verified']);
+
+route::get('mycart', [HomeController::class, 'mycart']) -> middleware(['auth','verified']);
+
+route::get('delete_cart/{id}', [HomeController::class, 'delete_cart'])->middleware(['auth','verified']); 
+
+route::post('comfirm_order', [HomeController::class, 'comfirm_order'])->middleware(['auth','verified']); 
+
+route::get('view_orders', [AdminController::class, 'view_order'])->middleware(['auth','admin']);
+
+Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+
+route::get('on_the_way/{id}', [AdminController::class, 'on_the_way'])->middleware(['auth','admin']);
+
+route::get('delivered/{id}', [AdminController::class, 'delivered'])->middleware(['auth','admin']);
+
+route::get('print_pdf/{id}', [AdminController::class, 'print_pdf'])->middleware(['auth','admin']);

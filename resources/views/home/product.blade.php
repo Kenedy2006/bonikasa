@@ -1,33 +1,32 @@
 <section class="shop_section layout_padding">
   <div class="container">
     <div class="heading_container heading_center">
-      <h2>
-        Nuestros últimos productos
-      </h2>
+      <h2> Nuestros productos </h2>
     </div>
     <div class="row">
 
       @foreach($product as $products)
       <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="box">
-          <!-- Zona clicable para detalles del producto -->
+        <div class="product-card">
+          <!-- Imagen del producto -->
           <a href="{{url('product_details', $products->id)}}" class="product-link">
             <div class="img-box">
-              <img src="products/{{$products->image}}" alt="">
+              <img src="products/{{$products->image}}" alt="{{$products->title}}">
             </div>
             <div class="detail-box">
               <h6 class="product-title">{{$products->title}}</h6>
             </div>
-            <div class="price-box">
-              <span class="product-price">S/.{{$products->price}}</span>
-            </div>
           </a>
+
+          <!-- Precio -->
+          <div class="price-box">
+            <span class="product-price">S/.{{$products->price}}</span>
+          </div>
 
           <!-- Botón de agregar al carrito -->
           <div class="action-buttons">
             <a class="btn btn-add-cart" href="{{url('add_cart', $products->id)}}">
-              Agregar
-              <i class="fa fa-shopping-cart"></i>
+              Agregar <i class="fa fa-shopping-cart"></i>
             </a>
           </div>
         </div>
@@ -40,64 +39,102 @@
 
 <!-- Estilos CSS -->
 <style>
-  /* Zona clicable para detalles */
-  .product-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
+  /* Contenedor de la tarjeta */
+  .product-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    padding: 15px;
+    text-align: center;
   }
 
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Imagen cuadrada */
+  .img-box {
+    width: 100%;
+    height: 200px; /* Define un tamaño fijo cuadrado */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Recorta el contenido que exceda el contenedor */
+    background-color: #f9f9f9;
+  }
+
+  .img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen para llenar el contenedor */
+  }
+
+  /* Título del producto */
   .product-title {
     font-size: 14px;
-    text-align: center;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333;
+    text-transform: capitalize;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
+  /* Precio */
   .price-box {
-    text-align: center;
     margin-top: 5px;
-  }
-
-  .product-price {
     font-size: 16px;
     font-weight: bold;
-    color: #000000;
+    color: #DB6574;
   }
 
   /* Botón de agregar al carrito */
   .btn-add-cart {
-    background-color: #DB6574; /* Color solicitado */
-    color: #FFFFFF; /* Texto blanco */
+    background-color: #DB6574;
+    color: #ffffff;
     border: none;
-    border-radius: 25px; /* Bordes redondeados */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    font-size: 16px;
+    border-radius: 25px;
+    padding: 10px 15px;
+    font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
+    display: inline-block;
+    margin-top: 10px;
     transition: all 0.3s ease;
-    margin: 10px auto 0;
-    width: 80%;
-    text-align: center;
-  }
-
-  .btn-add-cart i {
-    margin-left: 8px; /* Espaciado entre texto e ícono */
   }
 
   .btn-add-cart:hover {
-    background-color: #C14B5E; /* Color más oscuro al pasar el mouse */
+    background-color: #C14B5E;
+    text-decoration: none;
   }
 
-  /* Estilo responsivo */
+  .btn-add-cart i {
+    margin-left: 5px;
+  }
+
+  /* Grilla responsiva */
   @media (max-width: 576px) {
+    .product-card {
+      padding: 10px;
+    }
+
+    .product-title {
+      font-size: 12px;
+    }
+
     .btn-add-cart {
-      font-size: 14px;
-      padding: 8px 16px;
+      font-size: 12px;
+      padding: 8px 12px;
+    }
+
+    .img-box {
+      height: 150px; /* Tamaño menor en dispositivos pequeños */
     }
   }
 </style>

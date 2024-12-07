@@ -20,7 +20,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.css')}}" />
 
 <!-- Custom styles for this template -->
-<!-- Cambios -->
+<!-- Bootstrap del header y del footer -->
 <link href="{{asset('css/style.css')}}" rel="stylesheet" />
 <!-- responsive style -->
 <link href="{{asset('css/responsive.css')}}" rel="stylesheet" />

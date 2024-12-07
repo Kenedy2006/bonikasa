@@ -10,33 +10,92 @@ use App\Models\User;
 
 use App\Models\Cart;
 
+use App\Models\Order;
+
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        # Cambio admin.index
-        return view('admin.index');
+        $user = User::where('usertype','user')->get()->count();
+        $product = Product::all()->count();
+        $order = Order::all()->count();
+        $deliverd = Order::where('status','Entregado')->get()->count();
+        return view('admin.index',compact('user','product','order','deliverd'));
     }
 
-    # Agrega funcion
+
     public function home()
     {
         $product = Product::all();
-        return view('home.index', compact('product'));
+
+        if(Auth::id())
+        {
+
+        $user = Auth::user();
+
+        $userid = $user->id;
+    
+        $count = Cart::where('user_id',$userid)->count();
+
+        }
+
+        else
+        {
+            $count= '';
+        }
+
+        
+
+        return view('home.index',compact('product','count'));
     }
 
     public function login_home()
     {
         $product = Product::all();
-        return view('home.index', compact('product'));
+
+        if(Auth::id())
+        {
+
+        $user = Auth::user();
+
+        $userid = $user->id;
+    
+        $count = Cart::where('user_id',$userid)->count();
+
+        }
+
+        else
+        {
+            $count= '';
+        }
+
+        return view('home.index',compact('product','count'));
     }
 
     public function product_details($id)
     {
         $data = Product::find($id);
-        return view('home.product_details', compact('data'));
+
+        if(Auth::id())
+        {
+
+        $user = Auth::user();
+
+        $userid = $user->id;
+    
+        $count = Cart::where('user_id',$userid)->count();
+
+        }
+
+        else
+        {
+            $count= '';
+        }
+
+
+        return view('home.product_details', compact('data','count'));
     }
 
     public function add_cart($id)
@@ -59,6 +118,82 @@ class HomeController extends Controller
 
         return redirect()->back();
 
+    }
+
+    public function mycart()
+    {
+        if(Auth::id())
+        {
+
+            $user = Auth::user();
+
+            $userid = $user->id;
+
+            $count = Cart::where('user_id',$userid)->count();
+
+            $cart = Cart::where('user_id',$userid)->get();
+
+        }
+
+        return view('home.mycart',compact('count','cart'));
+
+
+    }
+
+    public function comfirm_order(Request $request)
+    {
+        $name = $request->name;
+
+        $address = $request->address;
+
+        $phone = $request->phone;
+
+        $userid = Auth::user()->id;
+
+        $cart = Cart::where('user_id',$userid)->get();
+
+        foreach($cart as $carts)
+        {
+            $order = new Order;
+
+            $order->name = $name;
+
+            $order->rec_address = $address;
+
+            $order->phone = $phone;
+
+            $order->user_id = $userid;
+
+            $order->product_id = $carts->product_id;
+
+            $order->save();
+
+            
+
+        }
+
+        $cart_remove = Cart::where('user_id',$userid)->get();
+
+        foreach($cart_remove as $remove)
+        {
+            $data = Cart::find($remove->id);
+
+            $data->delete();
+        }
+        toastr()->timeOut(10000)->closeButton()->addSuccess('Pedido hecho');
+        return redirect()->back();    
+
+    }
+
+    public function myorders()
+    {
+        $user = Auth::user()->id;
+
+        $count = Cart::where('user_id',$user)->get()->count();
+
+        $order = Order::where('user_id',$user)->get();
+
+        return view('home.order',compact('count','order'));
     }
 
 }

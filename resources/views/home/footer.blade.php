@@ -1,16 +1,13 @@
 <section class="info_section  layout_padding2-top">
     <div class="social_container">
       <div class="social_box">
-        <a href="">
+        <a href="https://www.facebook.com/Importacionesbonikasa/?locale=es_LA">
           <i class="fa fa-facebook" aria-hidden="true"></i>
         </a>
-        <a href="">
-          <i class="fa fa-twitter" aria-hidden="true"></i>
-        </a>
-        <a href="">
+        <a href="https://www.instagram.com/bonikasa/?hl=es-la">
           <i class="fa fa-instagram" aria-hidden="true"></i>
         </a>
-        <a href="">
+        <a href="https://www.youtube.com/@importacionesbonikasa">
           <i class="fa fa-youtube" aria-hidden="true"></i>
         </a>
       </div>

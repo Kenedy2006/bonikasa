@@ -12,7 +12,7 @@
       </div>
       <!-- Sidebar Navidation Menus--><span class="heading">Menú</span>
       <ul class="list-unstyled">
-              <li class="active"><a href=""> <i class="icon-home"></i>Inicio </a></li>
+              <li ><a href="{{url('admin/dashboard')}}"> <i class="icon-home"></i>Inicio </a></li>
               <li>
                 <a href="{{url('view_category')}}"> <i class="icon-grid"></i>Categoría </a></li>
               
@@ -23,6 +23,10 @@
                   
                 </ul>
               </li>
+              <li>
+                <a href="{{url('view_orders')}}"> <i class="icon-grid"></i>Orders </a></li>
+              
+
               
       </ul>
     </nav>
