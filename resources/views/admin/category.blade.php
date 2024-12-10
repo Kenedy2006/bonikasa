@@ -15,6 +15,7 @@
         border: 1px solid #ccc;
         font-size: 16px;
         background-color: #f5f5f5;
+        width: 100%; /* Ajuste para ser responsivo */
     }
 
     .div_deg
@@ -38,8 +39,8 @@
     {
       text-align: center;
       margin: 20px auto;
-      border: 2px solid #ccc;
-      border-radius: 10px;
+      border: 1px solid #4a4a4a;
+      /* border-radius: 10px; */
       width: 80%;
       background-color: #22252A;
       overflow: hidden;
@@ -52,7 +53,7 @@
       font-size: 18px;
       font-weight: normal;
       color: white;
-      border-bottom: 1px solid #4a4a4a;
+      border-bottom: 1px solid #22252A;
     }
 
     td
@@ -60,7 +61,7 @@
       color: #8A8D93;
       border: 1px solid #4a4a4a;
       padding: 10px;
-      border-radius: 5px;
+      /* border-radius: 5px; */
     }
 
     .btn {
@@ -114,6 +115,39 @@
         text-align: center;
     }
 
+    @media (max-width: 768px) {
+      .input-container {
+        width: 90%;
+      }
+
+      .table_deg {
+        width: 100%;
+      }
+
+      input[type='text'] {
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      th, td {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+    }
+
+    
+    
+
     </style>
 
   </head>
@@ -127,8 +161,8 @@
           <div class="div_deg">
             <form action="{{url('add_category')}}" method="post" class="input-container">
               @csrf
-              <input type="text" name="category" placeholder="Ingrese el nombre de la categoría" required style="width: 500px; height: 40px; padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px; background-color: #f5f5f5;">
-              <input class="btn btn-primary" type="submit" value="Agregar Categoría">
+              <input type="text" name="category" placeholder="Ingrese categoría" required>
+              <input class="btn btn-primary" type="submit" value="Agregar ">
             </form>
           </div>         
           <div>
@@ -152,4 +186,12 @@
     </div>
     @include('admin.js')
   </body>
+  <footer class="footer">
+    <div class="footer__block block no-margin-bottom">
+      <div class="container-fluid text-center">
+        <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+         <p class="no-margin-bottom">2024 &copy; Kenedy Ramos Huaman. Student from <a target="_blank" href="https://www.tecsup.edu.pe/">Tecsup</a>.</p>
+      </div>
+    </div>
+    </footer>
 </html>

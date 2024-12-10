@@ -1,10 +1,7 @@
+
 <section class="shop_section layout_padding">
   <div class="container">
-    <div class="heading_container heading_center">
-      <h2>Agregados recientemente</h2>
-    </div>
     <div class="row">
-
       @foreach($product as $products)
       <div class="col-sm-6 col-md-4 col-lg-3">
         <div class="product-card">
@@ -32,7 +29,6 @@
         </div>
       </div>
       @endforeach
-
     </div>
   </div>
 </section>

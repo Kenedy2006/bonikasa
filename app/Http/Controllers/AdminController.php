@@ -102,7 +102,7 @@ class AdminController extends Controller
 
     public function view_product()
     {
-        $product = Product::paginate(5);
+        $product = Product::orderBy('created_at', 'desc')->paginate(5); // <--- Cambio aquí
         return view('admin.view_product',compact('product'));
     }
 
@@ -123,9 +123,9 @@ class AdminController extends Controller
 
     }
 
-    public function update_product($id)
+    public function update_product($slug)
     {
-        $data = Product::find($id);
+        $data = Product::where('slug',$slug)->get()->first();
         $category = Category::all();
 
         return view('admin.update_page', compact('data','category'));
@@ -173,10 +173,10 @@ class AdminController extends Controller
         return view('admin.view_product', compact('product'));
     }
 
-
+#Muestra los pedidos hechos recientemente
     public function view_order()
     {
-        $data = Order::all();
+        $data = Order::orderBy('created_at', 'desc')->get();
         return view('admin.order', compact('data'));
     }
 

@@ -1,110 +1,124 @@
-<!-- Diseño de la página de ADMINISTRADOR -->
 <!DOCTYPE html>
 <html>
   <head> 
     @include('admin.css')
 
     <style type="text/css">
-    
-    .div_deg
-    {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+      body {
+        background-color: #1e1e1e;
+        color: white;
+        font-family: Arial, sans-serif;
+      }
 
-    label
-    {
-        display: inline-block;
-        width: 200px;
+      .page-content {
+        padding: 30px;
+      }
+
+      .form-container {
+        background-color: #2c2c2c;
+        border-radius: 10px;
         padding: 20px;
-    }
+        max-width: 700px;
+        margin: 0 auto;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      }
 
-    input[type='text']
-    {
-        width: 300px;
-        height: 60px;
-    }
+      h2 {
+        text-align: center;
+        color: #f1f1f1;
+        font-size: 24px;
+      }
 
-    textarea
-    {
-        width: 450px;
-        height: 100px;
-    }
+      label {
+        display: block;
+        margin: 10px 0 5px;
+        font-size: 16px;
+      }
 
-    
+      input[type='text'], input[type='number'], select, textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #555;
+        background-color: #444;
+        color: white;
+        font-size: 16px;
+        border-radius: 5px;
+      }
 
+      input[type='file'] {
+        padding: 12px;
+        margin-bottom: 15px;
+      }
+
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        background-color: #e74c3c;
+        border: none;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .btn:hover {
+        background-color: #c0392b;
+      }
+
+      .footer {
+        background-color: #333;
+        padding: 20px;
+        text-align: center;
+        color: white;
+      }
     </style>
 
   </head>
   <body>
     @include('admin.header')
     @include('admin.sidebar')
-      <!-- Sidebar Navigation end-->
-      <div class="page-content">
-        <div class="page-header">
-          <div class="container-fluid">
-            
-            <h2>Editar producto</h2>
-            
-          <div class="div_deg">
 
-            <form action="{{url('edit_product',$data->id)}}" method="post" enctype="multipart/form-data">
+    <div class="page-content">
+      <div class="form-container">
+        <h2>Editar Producto</h2>
+        <form action="{{url('edit_product',$data->id)}}" method="post" enctype="multipart/form-data">
+          @csrf
+          
+          <label>Título del Producto</label>
+          <input type="text" name="title" value="{{$data->title}}">
 
-                @csrf
+          <label>Descripción del Producto</label>
+          <textarea name="description">{{$data->description}}</textarea>
 
-                <div>
-                    <label>Título</label>
-                    <input type ="text" name="title" value="{{$data->title}}">
-                </div>
+          <label>Precio del Producto</label>
+          <input type="text" name="price" value="{{$data->price}}">
 
-                <div>
-                    <label>Descripción</label>
-                        <textarea name="description">{{$data->description}}</textarea>
-                </div>
+          <label>Cantidad Disponible</label>
+          <input type="number" name="quantity" value="{{$data->quantity}}">
 
-                <div>
-                    <label>Precio</label>
-                    <input type="text" name="price" value="{{$data->price}}">
-                </div>
+          <label>Categoría</label>
+          <select name="category">
+            <option value="{{$data->category}}">{{$data->category}}</option>
+            @foreach($category as $category)
+            <option value="{{$category->category_name}}">{{$category->category_name}}</option>
+            @endforeach
+          </select>
 
-                <div>
-                    <label>Cantidad</label>
-                    <input type="number" name="quantity" value="{{$data->quantity}}">
-                </div>
+          <label>Imagen Actual</label>
+          <img width="150" src="/products/{{$data->image}}">
 
-                <div>
-                    <label>Categoría</label>
-                    <select name="category">
-                        <option value="{{$data->category}}">{{$data->category}}</option>
-                        @foreach($category as $category)
-                        <option value="{{$category->category_name}}">{{$category->category_name}}</option>
-                        @endforeach
-                    </select>
-                </div>
+          <label>Nueva Imagen</label>
+          <input type="file" name="image">
 
-                <div>
-                    <label>Imagen actual</label>
-                    <img width="150" src="/products/{{$data->image}}">
-                </div>
-
-                <div>
-                    <label>Nueva imagen</label>
-                    <input type="file" name="image">
-                </div>
-
-                <div>
-                    <input class="btn btn-sucess" type="submit" value="Actualizar Producto">
-                </div>
-
-            </form>
-          </div>
-
-
-          </div>
+          <button type="submit" class="btn">Actualizar Producto</button>
+        </form>
       </div>
     </div>
-    <!-- JavaScript files-->
+
     @include('admin.js')
+
   </body>
 </html>

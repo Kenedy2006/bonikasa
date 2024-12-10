@@ -116,6 +116,12 @@
                             <p>{{$data->description}}</p>
                         </div>
 
+                        <div class="detail-box">
+                            <a class="btn btn-add-cart" href="{{url('add_cart', $data->id)}}">
+                                Agregar <i class="fa fa-shopping-cart"></i>
+                              </a>
+                        </div>
+
                         <!-- Botón de regresar -->
                         <div class="div_center">
                             <a class="btn-back" href="{{url('/')}}">Regresar a la tienda</a>

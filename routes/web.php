@@ -43,7 +43,7 @@ route::get('view_product', [AdminController::class, 'view_product']) -> middlewa
 
 route::get('delete_product/{id}', [AdminController::class, 'delete_product']) -> middleware(['auth','admin']);
 
-route::get('update_product/{id}', [AdminController::class, 'update_product']) -> middleware(['auth','admin']);
+route::get('update_product/{slug}', [AdminController::class, 'update_product']) -> middleware(['auth','admin']);
 
 route::post('edit_product/{id}', [AdminController::class, 'edit_product']) -> middleware(['auth','admin']);
 
@@ -59,6 +59,15 @@ route::get('delete_cart/{id}', [HomeController::class, 'delete_cart'])->middlewa
 
 route::post('comfirm_order', [HomeController::class, 'comfirm_order'])->middleware(['auth','verified']); 
 
+route::get('shop', [HomeController::class, 'shop']); 
+
+route::get('why', [HomeController::class, 'why']); 
+
+Route::controller(HomeController::class)->group(function(){
+    Route::get('stripe/{value}', 'stripe');
+    Route::post('stripe/{value}', 'stripePost')->name('stripe.post');
+});
+
 route::get('view_orders', [AdminController::class, 'view_order'])->middleware(['auth','admin']);
 
 Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
@@ -68,3 +77,7 @@ route::get('on_the_way/{id}', [AdminController::class, 'on_the_way'])->middlewar
 route::get('delivered/{id}', [AdminController::class, 'delivered'])->middleware(['auth','admin']);
 
 route::get('print_pdf/{id}', [AdminController::class, 'print_pdf'])->middleware(['auth','admin']);
+
+route::get('admin/product_search', [AdminController::class, 'product_search']) -> middleware(['auth','admin']);
+
+route::get('product_search', [HomeController::class, 'product_search']);

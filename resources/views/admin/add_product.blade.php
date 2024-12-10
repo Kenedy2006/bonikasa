@@ -2,128 +2,109 @@
 <html>
   <head> 
     @include('admin.css')
-    
-    <!-- [Cambio 1: Importación de la fuente Poppins] -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    
     <style type="text/css">
         body {
-            background-color: #2c2f33; /* Fondo oscuro, igual que el resto de la página */
+            background-color: #1e1e1e;
             color: white;
+            font-family: Arial, sans-serif;
         }
 
-        /* [Cambio 2: Estilo del título "Agregar Producto"] */
-        .page-header h1 {
-            font-family: 'Poppins', sans-serif; /* Fuente personalizada */
-            color: white;
-            text-align: center; /* Centra el texto */
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+        .page-content {
+            padding: 30px;
         }
 
         .form-container {
-            background-color: #22252A; /* Fondo del formulario */
-            padding: 20px;
+            background-color: #2c2c2c;
             border-radius: 10px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-            max-width: 600px;
-            margin: auto;
+            padding: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            text-align: center;
+            color: #f1f1f1;
+            font-size: 24px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
+            margin: 10px 0 5px;
             font-size: 16px;
-            color: white;
         }
 
-        input[type="text"], 
-        input[type="number"], 
-        select, 
-        textarea, 
-        input[type="file"] {
+        input[type='text'], input[type='number'], select, textarea {
             width: 100%;
-            padding: 10px;
-            font-size: 14px;
-            border: 1px solid #DB6574;
-            border-radius: 5px;
+            padding: 12px;
             margin-bottom: 15px;
-            background-color: #3b3f47; /* Fondo similar al resto */
+            border: 1px solid #555;
+            background-color: #444;
             color: white;
-        }
-
-        textarea {
-            resize: none;
-            height: 80px;
-        }
-
-        .btn-success {
-            background-color: #DB6574; /* Rojo coherente con el diseño */
-            color: white;
-            border: none;
-            padding: 10px 20px;
             font-size: 16px;
             border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
         }
 
-        .btn-success:hover {
+        input[type='file'] {
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #e74c3c;
+            border: none;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
             background-color: #c0392b;
+        }
+
+        .footer {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+            color: white;
         }
     </style>
   </head>
   <body>
     @include('admin.header')
     @include('admin.sidebar')
-
     <div class="page-content">
-      <div class="page-header">
-        <div class="container-fluid">
-          <!-- [Cambio 3: Título centrado con la fuente personalizada] -->
-          <h1>Agregar Producto</h1>
-          
-          <div class="form-container">
-            <form action="{{url('upload_product')}}" method="Post" enctype="multipart/form-data">
-              @csrf
-
-              <label for="title">Título del Producto</label>
-              <input type="text" name="title" id="title" required>
-
-              <label for="description">Descripción</label>
-              <textarea name="description" id="description" required></textarea>
-
-              <label for="price">Precio</label>
-              <input type="text" name="price" id="price" required>
-
-              <label for="qty">Cantidad</label>
-              <input type="number" name="qty" id="qty" required>
-
-              <label for="category">Categoría</label>
-              <select name="category" id="category" required>
-                <option value="">Seleccionar</option>
-                @foreach($category as $category)
-                  <option value="{{$category->category_name}}">{{$category->category_name}}</option>
-                @endforeach
-              </select>
-
-              <label for="image">Imagen del Producto</label>
-              <input type="file" name="image" id="image" required>
-
-              <button type="submit" class="btn-success">Agregar Producto</button>
-            </form>
-          </div>
-        </div>
+      <div class="form-container">
+        <h2>Agregar Producto</h2>
+        <form action="{{url('upload_product')}}" method="Post" enctype="multipart/form-data">
+          @csrf
+          <label for="title">Título del Producto</label>
+          <input type="text" name="title" id="title" required>
+          <label for="description">Descripción</label>
+          <textarea name="description" id="description" required></textarea>
+          <label for="price">Precio</label>
+          <input type="text" name="price" id="price" required>
+          <label for="qty">Cantidad</label>
+          <input type="number" name="qty" id="qty" required>
+          <label for="category">Categoría</label>
+          <select name="category" id="category" required>
+            <option value="">Seleccionar</option>
+            @foreach($category as $category)
+              <option value="{{$category->category_name}}">{{$category->category_name}}</option>
+            @endforeach
+          </select>
+          <label for="image">Imagen del Producto</label>
+          <input type="file" name="image" id="image" required>
+          <button type="submit" class="btn">Agregar Producto</button>
+        </form>
       </div>
     </div>
-
-    <script src="{{asset('admincss/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('admincss/vendor/popper.js/umd/popper.min.js')}}"></script>
-    <script src="{{asset('admincss/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('admincss/vendor/jquery.cookie/jquery.cookie.js')}}"></script>
-    <script src="{{asset('admincss/vendor/chart.js/Chart.min.js')}}"></script>
-    <script src="{{asset('admincss/vendor/jquery-validation/jquery.validate.min.js')}}"></script>
-    <script src="{{asset('admincss/js/charts-home.js')}}"></script>
-    <script src="{{asset('admincss/js/front.js')}}"></script>
+    @include('admin.js')
   </body>
+  
 </html>

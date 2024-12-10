@@ -1,8 +1,8 @@
 <section class="contact_section ">
     <div class="container px-0">
       <div class="heading_container ">
-        <h2 class="">
-          Contact Us
+        <h2 class="animate__animated animate__fadeIn">
+          <i class="fas fa-map-marker-alt"></i> Visítamos
         </h2>
       </div>
     </div>
@@ -15,24 +15,15 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-5 px-0">
+        <div class="col-md-6 col-lg-5 d-flex align-items-center justify-content-center px-0">
           <form action="#">
-            <div>
-              <input type="text" placeholder="Nombre" />
-            </div>
-            <div>
-              <input type="email" placeholder="Email" />
-            </div>
-            <div>
-              <input type="text" placeholder="Teléfono" />
-            </div>
-            <div>
-              <input type="text" class="message-box" placeholder="Mensaje" />
-            </div>
-            <div class="d-flex ">
-              <button>
-                Mandar
-              </button>
+            <div class="contact_info text-center animate__animated animate__fadeInRight" style="color: #333;">
+              <h1 class="contact_heading" style="color: #DB6574;"><i class="fas fa-store" style="color: #DB6574;"></i> Nos encontramos en:</h1>
+              <p class="contact_address">
+                <i class="fas fa-map-marker-alt" style="color: #000000;"></i> Jr. Cuzco 626, Int. Galería Central<br>
+                <i class="fas fa-building" style="color: #000000;"></i> Segundo piso, Puesto 150<br>
+                <i class="fas fa-smile" style="color: #000000;"></i> ¡Te esperamos!
+              </p>
             </div>
           </form>
         </div>
@@ -41,3 +32,7 @@
   </section>
 
   <br><br><br>
+
+<!-- Agregar enlaces a las hojas de estilo de Animate.css y FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>

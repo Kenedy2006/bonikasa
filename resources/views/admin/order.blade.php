@@ -5,37 +5,50 @@
     @include('admin.css')
 
     <style type="text/css">
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .table_deg {
+            border: 1px solid #4a4a4a; /* Ajuste del borde */
+            /* border-radius: 8px; */
+            overflow: hidden; /* Para mantener el diseño limpio */
+            background-color: #22252A; /* Fondo oscuro */
+            color: #8A8D93; /* Texto blanco para contraste */
+            width: 90%; /* Ajuste al ancho del contenido */
+            text-align: center; /* Centrar el texto dentro de la tabla */
+            overflow-x: auto; /* Hacer la tabla responsiva */
         }
 
-        table, th, td {
-            border: 1px solid black;
-        }
-
-        th, td {
+        /* Cabecera de la tabla */
+        th {
+            background-color: #DB6574; /* Color gris oscuro para la cabecera */
+            color: white; /* Texto con un tono rojo para destacar */
+            font-size: 18px;
             padding: 15px;
-            text-align: left;
+            font-weight: normal;
+            text-align: center; /* Centrar el texto de los títulos */
+            border-bottom: 1px solid #22252A;
         }
 
-        table tr:nth-child(even) {
-            background-color: #f2f2f2;
+        /* Filas de la tabla */
+        td {
+            border: 1px solid #4a4a4a; /* Borde más tenue */
+            text-align: center; /* Centrar el contenido */
+            padding: 10px;
+            /* border-radius: 5px; */
         }
 
-        table tr:nth-child(odd) {
-            background-color: #fff;
+        /* Imágenes */
+        img {
+            border: 1px solid #555555; /* Borde alrededor de las imágenes */
+            border-radius: 4px; /* Bordes ligeramente redondeados */
+            width: 120px; /* Asegurar que todas las imágenes tengan el mismo tamaño */
+            height: 120px; /* Asegurar que todas las imágenes tengan el mismo tamaño */
         }
 
-        table th {
-            background-color: black;
-            color: white;
+        /* Separar botones verticalmente */
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Espacio entre los botones */
         }
-
-        .table_center {
-            margin: auto;
-        }
-
     </style>
   </head>
   <body>
@@ -47,18 +60,19 @@
           <div class="container-fluid">
 
         <div class="table_center">   
-
-            <table>
+          <div class="table-responsive">
+            <table class="table_deg">
                 <tr>
-                    <th>Customisar nombre</th>
+                    <th>Nombre De Comprador</th>
                     <th>Dirección</th>
                     <th>Teléfono</th>
-                    <th>Título del producto</th>
+                    <th>Título Del Droducto</th>
                     <th>Precio</th>
                     <th>Imagen</th>
-                    <th>Status</th>
-                    <th>Cambiar estado</th>
-                    <th>Imprimir PDF</th>
+                    <th>Estado Del Pago</th>
+                    <th>Estado Del Pedido</th>
+                    <th>Cambiar Estado</th>
+                    <th>Voucher De Compra</th>
 
                 </tr>
 
@@ -72,6 +86,9 @@
                     <td>{{$data->product->price}}</td>
 
                     <td><img width="150" src="products/{{$data->product->image}}"></td>
+
+                    <td>{{$data->payment_status}}</td>
+
                     <td>
                         
 
@@ -89,19 +106,21 @@
 
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="{{url('on_the_way',$data->id)}}">En camino</a>
-                        <a class="btn btn-success" href="{{url('delivered',$data->id)}}">Entregado</a>
+                        <div class="btn-container">
+                            <a class="btn btn-primary" href="{{url('on_the_way',$data->id)}}">En camino</a>
+                            <a class="btn btn-success" href="{{url('delivered',$data->id)}}">Entregado</a>
+                        </div>
                     </td>
 
                     <td>
-                    <a class="btn btn-secondary" href="{{url('print_pdf',$data->id)}}">Imprimir PDF</a>
+                    <a class="btn btn-secondary" href="{{url('print_pdf',$data->id)}}">Imprimir Voucher</a>
                     </td>
                 </tr>
                 
                 @endforeach
                 
             </table>
-
+          </div>
         </div>    
 
           </div>
@@ -110,4 +129,12 @@
     <!-- JavaScript files-->
     @include('admin.js')
   </body>
+  <footer class="footer">
+    <div class="footer__block block no-margin-bottom">
+      <div class="container-fluid text-center">
+        <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+         <p class="no-margin-bottom">2024 &copy; Kenedy Ramos Huaman. Student from <a target="_blank" href="https://www.tecsup.edu.pe/">Tecsup</a>.</p>
+      </div>
+    </div>
+    </footer>
 </html>

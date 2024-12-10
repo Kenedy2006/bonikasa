@@ -6,8 +6,8 @@
       <div class="sidebar-header d-flex align-items-center">
         <div class="avatar"><img src="{{asset('admincss/img/avatar-6.jpg')}}" alt="..." class="img-fluid rounded-circle"></div>
         <div class="title">
-          <h1 class="h5">Kenedy Ramos</h1>
-          <p>Web Designer</p>
+          <h1 class="h5">{{ Auth::user()->name }}</h1>
+          <p>Administrador</p>
         </div>
       </div>
       <!-- Sidebar Navidation Menus--><span class="heading">Menú</span>
@@ -24,7 +24,7 @@
                 </ul>
               </li>
               <li>
-                <a href="{{url('view_orders')}}"> <i class="icon-grid"></i>Orders </a></li>
+                <a href="{{url('view_orders')}}"> <i class="icon-grid"></i>Pedidos </a></li>
               
 
               

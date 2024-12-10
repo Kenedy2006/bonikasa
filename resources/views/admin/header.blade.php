@@ -21,15 +21,17 @@
           <button class="sidebar-toggle"><i class="fa fa-long-arrow-left"></i></button>
         </div>
         
-          <!-- Log out               -->
+          <!-- Log out -->
           <div class="list-inline-item logout">
             <!-- Autenticaión -->
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-
-                <input type="submit" value="Cerrar sesión">
-            </form>                   
-        </div>
+            <a href="{{ route('logout') }}" 
+               onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="font-size: 1.2em; color: #DB6574;">
+              <i class="fa fa-sign-out"></i> Salir
+            </a>
+            <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
+              @csrf
+            </form>
+          </div>
       </div>
     </nav>
   </header>

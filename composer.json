@@ -7,10 +7,15 @@
     "require": {
         "php": "^8.2",
         "barryvdh/laravel-dompdf": "^3.0",
+        "culqi/culqi-php": "^2.0",
+        "cviebrock/eloquent-sluggable": "^11.0",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
+        "mercadopago/dx-php": "3.0.8",
         "php-flasher/flasher-toastr-laravel": "^2.1",
-        "php-flasher/flasher-toastr-symfony": "^2.1"
+        "php-flasher/flasher-toastr-symfony": "^2.1",
+        "srmklive/paypal": "^3.0",
+        "stripe/stripe-php": "^16.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

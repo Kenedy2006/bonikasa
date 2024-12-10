@@ -98,6 +98,10 @@ body {
   border-radius: 5px;
 }
 
+#navbarSupportedContent .nav-item .nav-link {
+  transition: background-color 0.3s ease;
+}
+
 #navbarSupportedContent .nav-item.active .nav-link {
   background-color: #ffffff;
 }
